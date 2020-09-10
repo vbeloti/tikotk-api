@@ -1,12 +1,30 @@
-import express from 'express';
+import express, { Express } from 'express';
+import routes from './routes';
 
-const app = express();
-const port = process.env.PORT || 3333;
+import './database/connection';
 
-app.get('/' ,(req, res) => {
-  res.send('ok');
-});
+class Index {
+  private server: Express;
+  private port = process.env.PORT || 3333;
 
-app.listen(port, () => {
-  console.log('🔥 Server started 🔥');
-})
+  constructor() {
+    this.server = express();
+    this.middlewares();
+    this.routes();
+    this.server.listen(this.port, this.started);
+  }
+
+  middlewares() {
+    this.server.use(express.json());
+  }
+
+  routes() {
+    this.server.use('/api/v1/', routes);
+  }
+
+  started() {
+      console.log('🔥 Server Started');
+  }
+}
+
+export default new Index();
