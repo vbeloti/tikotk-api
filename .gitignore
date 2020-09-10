@@ -109,4 +109,6 @@ dist
 
 build
 
-database.ts
+config/database.ts
+
+
