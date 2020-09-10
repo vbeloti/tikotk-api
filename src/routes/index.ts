@@ -3,9 +3,9 @@ import TikTokController from '../controllers/TikTokController';
 
 const routes = Router();
 
-routes.get('/posts', TikTokController.index);
+routes.get('/videos', TikTokController.index);
 
-routes.post('/posts', TikTokController.store);
+routes.post('/videos', TikTokController.store);
 
 
 export default routes;
