@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import CreateVideoService from "../services/CreateVideoService";
+import ListAllVideosService from "../services/ListAllVideosService";
 
 class TikTokController {
   async store(req: Request, res: Response) {
@@ -27,7 +28,10 @@ class TikTokController {
   }
 
   async index(req: Request, res: Response) {
-    res.json({ ok: true });
+    const listAllVideos = new ListAllVideosService();
+
+    const videos = await listAllVideos.execute();
+    res.json(videos);
   }
 }
 
